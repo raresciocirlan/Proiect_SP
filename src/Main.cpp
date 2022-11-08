@@ -1,5 +1,5 @@
 #include <iostream>
-#include <Book.h>
+#include "../interface/Book.h"
 int main()
 {
     Section *cap1 = new Section("Capitolul 1");
