@@ -1,4 +1,4 @@
-#include <Author.h>
+#include "../interface/Author.h"
 
 Author::Author(std::string name)
 {
@@ -6,5 +6,5 @@ Author::Author(std::string name)
 }
 void Author::print()
 {
-    std::cout << "Author: " << name << std::endl;
+    std::cout<< "Author: " << name << std::endl;
 }
