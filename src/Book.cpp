@@ -50,6 +50,10 @@ void Section::remove(Element* element)
 {
     elementList.erase(std::remove(elementList.begin(), elementList.end(), element), elementList.end());
 }
+void Section::accept(Visitor* visitor)
+{
+    visitor->visitSection(this);
+}
 Element* Section::get(int index)
 {
     return elementList.at(index);
@@ -71,6 +75,10 @@ std::string Image::getPictureContent()
 void Image::print(){}
 void Image::add(Element* element){}
 void Image::remove(Element* element){}
+void Image::accept(Visitor* visitor)
+{
+    visitor->visitImage(this);
+}
 Element* Image::get(int index){return nullptr;}
 
 
@@ -107,6 +115,10 @@ void ImageProxy::print()
 }
 void ImageProxy::add(Element* element){}
 void ImageProxy::remove(Element* element){}
+void ImageProxy::accept(Visitor* visitor)
+{
+    visitor->visitImageProxy(this);
+}
 Element* ImageProxy::get(int index){return nullptr;}
 
 
@@ -186,6 +198,10 @@ void Paragraph::print()
 }
 void Paragraph::add(Element* element){}
 void Paragraph::remove(Element* element){}
+void Paragraph::accept(Visitor* visitor)
+{
+    visitor->visitParagraph(this);
+}
 Element* Paragraph::get(int index){return nullptr;}
 
 
@@ -200,6 +216,10 @@ void Table::print()
 }
 void Table::add(Element* element){}
 void Table::remove(Element* element){}
+void Table::accept(Visitor* visitor)
+{
+    visitor->visitTable(this);
+}
 Element* Table::get(int index){return nullptr;}
 
 
@@ -213,4 +233,8 @@ void TableOfContents::print()
 }
 void TableOfContents::add(Element* element){}
 void TableOfContents::remove(Element* element){}
+void TableOfContents::accept(Visitor* visitor)
+{
+    visitor->visitTableOfContents(this);
+}
 Element* TableOfContents::get(int index){return nullptr;}

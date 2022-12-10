@@ -14,16 +14,19 @@
 #endif
 
 #include "../interface/author.h"
+#include "Visitor.h"
 
 std::string genRandomString(const int len);
 
+class Visitor;
 
 class Element
 {
 public:
     virtual void print() = 0;
-    virtual void add(Element*) = 0;
-    virtual void remove(Element*) = 0;
+    virtual void add(Element* element) = 0;
+    virtual void remove(Element* element) = 0;
+    virtual void accept(Visitor* visitor) = 0;
     virtual Element* get(int index) = 0;
 };
 
@@ -52,6 +55,7 @@ public:
     void print();
     void add(Element* element);
     void remove(Element* element);
+    void accept(Visitor* visitor);
     Element* get(int index);
 };
 
@@ -74,6 +78,7 @@ public:
     void print();
     void add(Element* element);
     void remove(Element* element);
+    void accept(Visitor* visitor);
     Element* get(int index);
 };
 
@@ -125,6 +130,7 @@ public:
     void print();
     void add(Element* element);
     void remove(Element* element);
+    void accept(Visitor* visitor);
     Element* get(int index);
 
     friend class AlignStrategy;
@@ -141,6 +147,7 @@ public:
     void print();
     void add(Element* element);
     void remove(Element* element);
+    void accept(Visitor* visitor);
     Element* get(int index);
 };
 
@@ -155,22 +162,23 @@ public:
     void print();
     void add(Element* element);
     void remove(Element* element);
+    void accept(Visitor* visitor);
     Element* get(int index);
 };
 
 
 class Section: public Element
 {
-private:
-    std::vector<Element*> elementList;
 protected:
     std::string title;
 public:
+    std::vector<Element*> elementList;
     Section(std::string title);
 
     void print();
     void add(Element* element);
     void remove(Element* element);
+    void accept(Visitor* visitor);
     Element* get(int index);
 };
 
