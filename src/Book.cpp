@@ -30,6 +30,13 @@ void Book::addAuthor(Author* author)
 {
     authorList.push_back(author);
 }
+void Book::SetAvailability(const std::string& availability) {
+    this->availability = availability;
+    Notify(availability);
+}
+std::string Book::GetAvailability() {
+    return availability;
+}
 
 
 Section::Section(std::string title)

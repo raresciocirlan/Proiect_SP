@@ -1,9 +1,10 @@
 #include <iostream>
 #include "../interface/VisitContentVisitor.h"
+#include "../interface/Customer.h"
 
 int main()
 {
-    Section *cap1 = new Section("Capitolul 1");
+    Section *cap1 = new Section("Chapter 1");
     Paragraph *p1 = new Paragraph("Paragraph 1");
     cap1->add(p1);
     Paragraph *p2 = new Paragraph("Paragraph 2");
@@ -19,4 +20,18 @@ int main()
     VisitContentVisitor *stats = new VisitContentVisitor();
     cap1->accept(stats);
     stats->print();
+
+    Book book1("The Hobbit");
+
+    Customer customer1("Paul");
+    Customer customer2("Daniel");
+    book1.Attach(&customer1);
+    book1.Attach(&customer2);
+
+    book1.SetAvailability("limited");
+    book1.SetAvailability("out of stock");
+
+    book1.Detach(&customer1);
+
+    book1.SetAvailability("available");
 }

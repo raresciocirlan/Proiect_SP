@@ -13,7 +13,8 @@
 #include <unistd.h>
 #endif
 
-#include "../interface/author.h"
+#include "Author.h"
+#include "Subject.h"
 #include "Visitor.h"
 
 std::string genRandomString(const int len);
@@ -183,13 +184,17 @@ public:
 };
 
 
-class Book: public Section
+class Book: public Section, public Subject
 {
 private:
     std::vector<Author*> authorList;
+    std::string availability;
 public:
     explicit Book(std::string title);
 
     void addAuthor(Author* author);
     void print();
+
+    void SetAvailability(const std::string& availability);
+    std::string GetAvailability();
 };
